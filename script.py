@@ -1,4 +1,8 @@
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from pprint import pprint
+from scipy.io.wavfile import write
 
 frequency = 44100
 
@@ -11,10 +15,9 @@ def get_wave(freq,duration = 0.5):
   
   a_wave = get_wave(440,1)
   
-  print(len(a_wave))
-  type(a_wave)
+  #print(len(a_wave))
+  #type(a_wave)
   
-import matplotlib.pyplot as plt
 plt.plot(a_wave[0:int(44100/440)])
 plt.xlabel('time')
 plt.ylabel('Amplitude')
@@ -22,8 +25,6 @@ plt.show()
 
 
 ###########
-
-from pprint import pprint
 
 def get_piano_notes():
     octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
@@ -52,5 +53,4 @@ def get_song_data(music_notes):
   
 data = get_song_data(notes)
 
-from scipy.io.wavfile import write
 write('shape_of_you_melody.wav', frequency, data.astype(np.int16))
