@@ -35,6 +35,21 @@ def get_piano_notes():
     note_freqs[''] = 0.0 #silent note
     
     return note_freqs
+
+def get_piano_notes():
+    octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
+    base_freq = 440 #A4 frequency in Hz
+
+    keys = np.array([x+str(y) for y in range(0,9) for x in octave])
+
+    start_index = np.where(keys == 'A0')[0][0]
+    end_index = np.where(keys == 'C8')[0][0]
+    keys = keys[start_index:end_index+1]
+
+    note_freqs = dict(zip(keys,[2**((n+1-49)/12)*base_freq for n in range(len(keys))]))
+    note_freqs[''] = 0.0
+
+    return note_freqs
   
 note_freqs = get_piano_notes()
 
