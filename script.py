@@ -4,27 +4,22 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 from scipy.io.wavfile import write
 
-frequency = 44100
+SAMPLE_RATE = 44100
+AMPLITUDE = 4096
 
-def get_wave(freq,duration = 0.5):
-    amplitude = 4096
-    t = np.linspace(0,duration,int(frequency*duration))
-    wave = amplitude*np.sin(2*np.pi*freq*t)
-    
+def get_wave(frequency,duration):
+    t = np.linspace(0,duration,int(SAMPLE_RATE*duration)) #Equally distributed time intervals to mimic a wave
+    wave = AMPLITUDE*np.sin(2*np.pi*frequency*t)
     return wave
   
-  a_wave = get_wave(440,1)
-  
-  #print(len(a_wave))
-  #type(a_wave)
-  
-plt.plot(a_wave[0:int(44100/440)])
-plt.xlabel('time')
-plt.ylabel('Amplitude')
-plt.show()
+#a_wave = get_wave(440,1)
+#print(len(a_wave))
+#type(a_wave)
+#plt.plot(a_wave[0:int(44100/440)])
+#plt.xlabel('time')
+#plt.ylabel('Amplitude')
+#plt.show()
 
-
-###########
 
 # Single Octave Key Notes
 #def get_piano_notes():
