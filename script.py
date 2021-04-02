@@ -26,16 +26,18 @@ plt.show()
 
 ###########
 
-def get_piano_notes():
-    octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
-    base_freq = 523.25 #C5 note frequency
+# Single Octave Key Notes
+#def get_piano_notes():
+#    octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
+#    base_freq = 523.25 #C5 note frequency
     
-    note_freqs = {octave[i]: base_freq*pow(2,(i/12)) for i in range(len(octave))}
+#    note_freqs = {octave[i]: base_freq*pow(2,(i/12)) for i in range(len(octave))}
     
-    note_freqs[''] = 0.0 #silent note
+#    note_freqs[''] = 0.0 #silent note
     
-    return note_freqs
+#    return note_freqs
 
+# 88 Key Notes
 def get_piano_notes():
     octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
     base_freq = 440 #A4 frequency in Hz
