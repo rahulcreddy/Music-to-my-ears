@@ -49,8 +49,8 @@ def get_piano_notes():
     return note_freqs
   
 note_freqs = get_piano_notes()
-
-pprint(note_freqs)
+#c4_freq = note_freqs['C4']
+#pprint(note_freqs)
 
 notes = 'c+E+c+c+E+c+c+E+c+d+c+B' #Shape of You Melody
 #notes = 'c++E++c++c++E++c++c++E++c++d++c++B'
