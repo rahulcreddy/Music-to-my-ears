@@ -53,16 +53,15 @@ note_freqs = get_piano_notes()
 #pprint(note_freqs)
 
 notes = 'c+E+c+c+E+c+c+E+c+d+c+B' #Shape of You Melody
-#notes = 'c++E++c++c++E++c++c++E++c++d++c++B'
 
 ## WRITE SONG
 
-def get_song_data(music_notes):
-    note_freqs = get_piano_notes()
-    song = [get_wave(note_freqs[note]) for note in music_notes.split('+')]
-    song = np.concatenate(song)
-    return song
+#ef get_song_data(music_notes):
+#   note_freqs = get_piano_notes()
+#   song = [get_wave(note_freqs[note]) for note in music_notes.split('+')]
+#   song = np.concatenate(song)
+#   return song
   
-data = get_song_data(notes)
+#ata = get_song_data(notes)
 
-write('shape_of_you_melody.wav', frequency, data.astype(np.int16))
+#rite('shape_of_you_melody.wav', frequency, data.astype(np.int16))
