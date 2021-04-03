@@ -21,7 +21,7 @@ def get_wave(frequency,duration):
 #plt.show()
 
 
-# Single Octave Key Notes
+##################### SINGLE OCTAVE KEY NOTES OF PIANO #####################
 #def get_piano_notes():
 #    octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
 #    base_freq = 523.25 #C5 note frequency
@@ -32,7 +32,7 @@ def get_wave(frequency,duration):
     
 #    return note_freqs
 
-# 88 Key Notes
+##################### 88 KEY NOTES OF PIANO #####################
 def get_piano_notes():
     octave = ['C','c','D','d','E','F','f','G','g','A','a','B']
     base_freq = 440 #A4 frequency in Hz
