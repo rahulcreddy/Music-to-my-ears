@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pprint import pprint
-from scipy.io.wavfile import write
+#from scipy.io.wavfile import write
 
 SAMPLE_RATE = 44100
 AMPLITUDE = 4096
@@ -52,7 +52,7 @@ note_freqs = get_piano_notes()
 #c4_freq = note_freqs['C4']
 #pprint(note_freqs)
 
-notes = 'c+E+c+c+E+c+c+E+c+d+c+B' #Shape of You Melody
+#notes = 'c+E+c+c+E+c+c+E+c+d+c+B' #Shape of You Melody
 
 ## WRITE SONG
 
