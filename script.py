@@ -65,3 +65,39 @@ note_freqs = get_piano_notes()
 #ata = get_song_data(notes)
 
 #rite('shape_of_you_melody.wav', frequency, data.astype(np.int16))
+
+def get_adsr_weights(frequency, duration, length, decay, sustain_level,sample_rate=44100):
+
+    assert abs(sum(length)-1) < 1e-8
+    assert len(length) ==len(decay) == 4
+    
+    intervals = int(duration*frequency)
+    len_A = np.maximum(int(intervals*length[0]),1)
+    len_D = np.maximum(int(intervals*length[1]),1)
+    len_S = np.maximum(int(intervals*length[2]),1)
+    len_R = np.maximum(int(intervals*length[3]),1)
+    
+    decay_A = decay[0]
+    decay_D = decay[1]
+    decay_S = decay[2]
+    decay_R = decay[3]
+    
+    A = 1/np.array([(1-decay_A)**n for n in range(len_A)])
+    A = A/np.nanmax(A)
+    D = np.array([(1-decay_D)**n for n in range(len_D)])
+    D = D*(1-sustain_level)+sustain_level
+    S = np.array([(1-decay_S)**n for n in range(len_S)])
+    S = S*sustain_level
+    R = np.array([(1-decay_R)**n for n in range(len_R)])
+    R = R*S[-1]
+    
+    weights = np.concatenate((A,D,S,R))
+    smoothing = np.array([0.1*(1-0.1)**n for n in range(5)])
+    smoothing = smoothing/np.nansum(smoothing)
+    weights = np.convolve(weights, smoothing, mode='same')
+    
+    weights = np.repeat(weights, int(sample_rate*duration/intervals))
+    tail = int(sample_rate*duration-weights.shape[0])
+    if tail > 0:
+        weights = np.concatenate((weights, weights[-1]-weights[-1]/tail*np.arange(tail)))
+    return weights
