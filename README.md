@@ -8,3 +8,5 @@ Add chords to the current single notes
 Remove the noise and mechanical sound
 
 Create a database of popular songs
+
+Apply ADSR method to improve sound of monotonous sinusoidal wave
