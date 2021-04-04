@@ -56,16 +56,17 @@ note_freqs = get_piano_notes()
 
 ## WRITE SONG
 
-#ef get_song_data(music_notes):
+#def get_song_data(music_notes):
 #   note_freqs = get_piano_notes()
 #   song = [get_wave(note_freqs[note]) for note in music_notes.split('+')]
 #   song = np.concatenate(song)
 #   return song
   
-#ata = get_song_data(notes)
+#data = get_song_data(notes)
 
-#rite('shape_of_you_melody.wav', frequency, data.astype(np.int16))
+#write('shape_of_you_melody.wav', frequency, data.astype(np.int16))
 
+# ADSR Weights for Piano
 def get_adsr_weights(frequency, duration, length, decay, sustain_level,sample_rate=44100):
 
     assert abs(sum(length)-1) < 1e-8
