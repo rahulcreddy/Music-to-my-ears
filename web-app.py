@@ -1,1 +1,1 @@
-# Web-App in Python
+# Creating webapp in Python using Django framework
