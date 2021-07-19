@@ -100,3 +100,22 @@ def apply_pedal(note_durations, bar_duration):
         if start == len(note_durations):
             break
     return new_durations
+
+def get_song_data(music_notes, note_durations, bar_duration, factor, length, decay, sustain_level, sample_rate = 44100, amplitude = 4096):
+    note_freqs = get_piano_notes()
+    frequencies = [note_freqs[note] for note in music_notes]
+    new_durations = apply_pedal(note_durations, bar_duration)
+    duration = int(sum(note_durations)*sample_rate)
+    end_idx = np.cumsum(np.array(note_durations)*sample_rate).astype(int)
+    start_idx = np.concatenate(([0], end_idx[:-1]))
+    end_idx = np.array([start_idx[i]+new_durations[i]*sample_rate for i in range(len(new_durations))]).astype(int)
+    
+    song = np.zeros((duration,))
+    
+    for i in range(len(music_notes)):
+        this_note = apply_overtones(frequencies[i], new_durations[i], factor)
+        weights = get_adsr_weights(frequencies[i], new_durations[i], length, decay, sustain_level)
+        song[start_idx[i]:end_idx[i]] += this_note*weights
+
+    song = song*(amplitude/np.max(song))
+    return song
