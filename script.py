@@ -79,3 +79,24 @@ def get_adsr_weights(frequency, duration, length, decay, sustain_level, sample_r
     if tail > 0:
         weights = np.concatenate((weights, weights[-1]-weights[-1]/tail*np.arange(tail)))
     return weights
+
+def apply_pedal(note_durations, bar_duration):
+    
+    new_durations = []
+    start = 0
+
+    while True:
+        # Count total duration from end of last bar
+        cum_value = np.cumsum(np.array(note_durations[start:]))
+        # Find end of this bar
+        end = np.where(cum_value == bar_duration)[0][0]
+        if end == 0: # If the note takes up the whole bar
+            new_durations += [note_durations[start]]
+        else:
+            this_bar = np.array(note_durations[start:start+end+1])
+            # New value of note is the remainder of bar = (total duration of bar) - (cumulative duration thus far)
+            new_durations += [bar_duration-np.sum(this_bar[:i]) for i in range(len(this_bar))]
+        start += end+1
+        if start == len(note_durations):
+            break
+    return new_durations
